@@ -1,0 +1,162 @@
+// app global css in SCSS form
+@import 'utils.scss';
+@import 'mixins.scss';
+
+// app global css in Stylus form
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: $lightgrey;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $lightgrey;
+  border: none;
+  border-radius: 5px;
+}
+
+.responsive-height {
+  width: 100%;
+  height: calc(100vh - 50px);
+  max-height: 1080px;
+}
+
+.responsive-content {
+  height: 100%;
+  max-width: 1920px;
+  margin: auto;
+  overflow-x: hidden;
+}
+
+.grid-tela {
+  display: grid;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: row;
+
+  &__gap {
+    gap: 2px;
+
+    &-sm {
+      gap: 6px;
+    }
+    &-md {
+      gap: 12px;
+    }
+    &-lg {
+      gap: 18px;
+    }
+  }
+  &__padding {
+    padding: 16px;
+
+    &-sm {
+      gap: 6px;
+    }
+    &-md {
+      gap: 12px;
+    }
+    &-lg {
+      gap: 18px;
+    }
+  }
+  &__no-padding{
+    padding: 0;
+  }
+}
+
+.form-lines {
+  display: flex;
+  flex-direction: column;
+
+
+  &__no-padding {
+    padding: 0;
+  }
+
+  &__gap {
+    gap: 2px;
+
+    &-sm {
+      gap: 6px;
+    }
+    &-md {
+      gap: 12px;
+    }
+    &-lg {
+      gap: 18px;
+    }
+  }
+
+  &__padding {
+    padding: 16px;
+
+    &-sm {
+      gap: 6px;
+    }
+    &-md {
+      gap: 12px;
+    }
+    &-lg{
+      gap: 18px;
+    }
+  }
+}
+//colunas
+.content-column {
+  display: flex;
+  gap: 16px;
+  flex-direction: row;
+}
+
+
+.content-component {
+  display: grid;
+  height: 100%;
+}
+
+.q-btn {
+  padding: 2.5px;
+}
+
+.q-dialog__inner {
+  & > .q-card {
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
+    grid-template-areas:  "dialog-header" "dialog-content" "dialog-actions";
+
+    .dialog-header {
+      grid-area: dialog-header;
+    }
+
+    .q-card {
+      &__section {
+        grid-area: dialog-content;
+        overflow-y: auto;
+      }
+
+      &__actions {
+        grid-area: dialog-actions;
+      }
+    }
+  }
+}
+
+.menu-top-table {
+  overflow-x: auto;
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

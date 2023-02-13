@@ -1,0 +1,13 @@
+{
+  "main.initialized": "Server está rodando na porta:",
+  "main.error": "Ocorreu um erro ao inicializar o servidor",
+  "database.init": "Ocorreu um erro ao inicializar o servidor",
+  "database.error": "Erro ao criar esquema de banco de dados",
+  "database.rsync": "Drop ou Rsync Database",
+  "database.rsync_error": "Error no Drop ou Rsync Database",
+  "authentication.created": "Usuario registrado com sucesso!",
+  "authentication.not_found": "Usuario não encontrado!",
+  "authentication.invalid_password": "Senha inválida!",
+  "database.not_found": "Não encontrado",
+  "invalid_password": "invalid_password"
+}

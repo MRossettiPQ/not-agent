@@ -1,0 +1,86 @@
+@mixin mobile-portrait() {
+  @media (max-width: 724px) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin tablet-portrait() {
+  @media (min-width: 725px) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin desktop-mdpi() {
+  @media (max-width: 959px) and (min-width: 0) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin md() {
+  @media (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin vendor($prop, $args...) {
+  -webkit-#{$prop}: $args;
+  -moz-#{$prop}: $args;
+  -o-#{$prop}: $args;
+  #{$prop}: $args;
+}
+
+@mixin animation($args...) {
+  @include vendor('animation', $args);
+}
+
+@mixin border-radius($args...) {
+  @include vendor('border-radius', $args);
+}
+
+@mixin border-top-radius($args...) {
+  @include vendor('border-top-left-radius', $args);
+  @include vendor('border-top-right-radius', $args);
+}
+
+@mixin border-top-radius($args...) {
+  @include vendor('border-bottom-left-radius', $args);
+  @include vendor('border-bottom-right-radius', $args);
+}
+
+@mixin linear-gradient-mixin($start_color, $end_color, $args...) {
+  background: $start_color; /* Old browsers */
+  background: -moz-linear-gradient($unquote ($join (', ', $args))); /* FF3.6-15 */
+  background: -webkit-linear-gradient($unquote ($join (', ', $args))); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient($unquote ($join (', ', $args))); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(startColorstr='" + $start_color + "', endColorstr='" + $end_color + "', GradientType=1)");
+}
+
+/* IE6-9 fallback on horizontal gradient */
+
+@mixin background-clip($args...) {
+  @include vendor('background-clip', $args);
+}
+
+@mixin box-shadow($args...) {
+  -moz-box-shadow: $args;
+  -webkit-box-shadow: $args;
+  box-shadow: $args;
+}
+
+@mixin box-sizing($args...) {
+  -moz-box-sizing: $args;
+  -webkit-box-sizing: $args;
+  box-sizing: $args;
+}
+
+@mixin text-fill-color($args...) {
+  @include vendor('text-fill-color', $args);
+}
+
+@mixin transition($args...) {
+  @include vendor('transition', $args);
+}
+
+@mixin transform($args...) {
+  @include vendor('transform', $args);
+}

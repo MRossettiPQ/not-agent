@@ -1,0 +1,50 @@
+{
+  "name": "not-agent-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:prod": "cross-env NODE_ENV=production node server.js --l pt-br",
+    "start:dev": "cross-env NODE_ENV=development nodemon server.js --l pt-br",
+    "build:hml": "nexe nexe.js",
+    "build:prod": "nexe nexe.js",
+    "lint": "npx eslint src test",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "npx prettier src test --check",
+    "prettier:fix": "npm run prettier -- --write"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dayjs": "^1.11.7",
+    "express": "^4.18.2",
+    "i18n": "^0.15.1",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
+    "mariadb": "^3.0.2",
+    "mathjs": "^11.5.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.1.2",
+    "node-notifier": "^10.0.1",
+    "path": "^0.12.7",
+    "sequelize": "^6.28.0",
+    "socket.io": "^4.6.0",
+    "uuid": "^9.0.0",
+    "yargs": "^17.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.34.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.4",
+    "sucrase": "^3.29.0"
+  }
+}

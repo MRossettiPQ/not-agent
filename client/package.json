@@ -1,0 +1,70 @@
+{
+  "name": "not-agent",
+  "version": "0.0.1",
+  "description": "Not agent",
+  "productName": "Not agent",
+  "author": "Matheus Rossetti <matheus__rossetti@hotmail.com>",
+  "private": true,
+  "scripts": {
+    "build": "cross-env NODE_ENV=production quasar build",
+    "build-electron": "cross-env NODE_ENV=production quasar build -m electron",
+    "build-mobile": "cross-env NODE_ENV=production quasar build -m capacitor -T android",
+    "serve": "cross-env NODE_ENV=development quasar dev",
+    "serve-electron": "cross-env NODE_ENV=development quasar dev --mode electron",
+    "serve-mobile": "cross-env NODE_ENV=development quasar dev --mode capacitor -T android",
+    "lint-fix": "eslint --fix --ext .js,.vue src",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@lottiefiles/vue-lottie-player": "^1.1.0",
+    "@quasar/extras": "^1.0.0",
+    "axios": "^0.21.1",
+    "big.js": "^6.2.1",
+    "core-js": "^3.6.5",
+    "dayjs": "^1.11.7",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "node-notifier": "^10.0.1",
+    "quasar": "^1.0.0",
+    "reflect-metadata": "^0.1.13",
+    "socket.io-client": "^4.6.0",
+    "string-mask": "^0.3.0",
+    "vue-class-component": "^7.2.6",
+    "vue-i18n": "^8.0.0",
+    "vue-property-decorator": "^9.1.2"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "@quasar/app": "^2.0.0",
+    "@quasar/quasar-app-extension-dotenv": "^1.1.0",
+    "cross-env": "^7.0.3",
+    "devtron": "^1.4.0",
+    "electron": "^9.0.0",
+    "electron-debug": "^3.0.1",
+    "electron-devtools-installer": "^3.0.0",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-define-config": "^1.15.0",
+    "eslint-plugin-vue": "^9.0.0",
+    "eslint-webpack-plugin": "^2.0.0",
+    "prettier": "^2.5.1",
+    "quasar-app-extension-ide-helper": "^1.0.2"
+  },
+  "browserslist": [
+    "ie >= 11",
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
+  ],
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

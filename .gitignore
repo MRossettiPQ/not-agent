@@ -1,0 +1,59 @@
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.iml
+
+
+#IGNORE server
+/server/node_modules
+/server/.idea
+/server/yarn.lock
+/server/.vscode
+/server/*.iml
+/server/package-lock.json
+
+#IGNORE front
+/client/node_modules
+/client/package-lock.json
+/client/.idea
+/client/yarn.lock
+/client/.vscode
+/front/*.iml
+/client/.DS_Store
+/client/.thumbs.db
+# Quasar core related directories
+/client/.quasar
+/client/dist
+
+# Cordova related directories and files
+/client/src-cordova/node_modules
+/client/src-cordova/platforms
+/client/src-cordova/plugins
+/client/src-cordova/www
+/client/src-cordova/android
+/client/src-cordova/yarn.lock
+
+# Capacitor related directories and files
+/client/src-capacitor/www
+/client/src-capacitor/node_modules
+/client/src-capacitor/android
+/client/src-capacitor/yarn.lock
+
+# BEX related directories and files
+/client/src-bex/www
+/client/src-bex/js/core
+
+# Log files
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
+
+/client/.quasar-ide-helper
+
+/client/webpack.config.js
+
+/client/dev.env
+/client/prod.env

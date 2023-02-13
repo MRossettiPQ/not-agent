@@ -1,0 +1,408 @@
+/*
+ * Cores
+ */
+$colors: ("primary": var(--q-color-primary),
+  "secondary": var(--q-color-secondary),
+  "tertiary": var(--q-color-tertiary),
+  "background": var(--q-color-background),
+  "neutral": var(--q-color-neutral),
+  "white": var(--q-color-white),
+  "dark": var(--q-color-dark));
+
+@each $name, $color in $colors {
+  .c-#{$name} {
+    color: $color !important;
+  }
+
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+}
+
+/*
+ * Margins & Paddings
+ */
+@for $space from 1 through 25 {
+  $space: $space * 4;
+  .m-#{$space} {
+    margin: #{$space + 'px'} !important
+  }
+  .m-v-#{$space} {
+    margin: #{$space + 'px'} 0 !important
+  }
+  .m-h-#{$space} {
+    margin: 0 #{$space + 'px'} !important
+  }
+  .m-t-#{$space} {
+    margin-top: #{$space + 'px'} !important
+  }
+  .m-b-#{$space} {
+    margin-bottom: #{$space + 'px'} !important
+  }
+  .m-l-#{$space} {
+    margin-left: #{$space + 'px'} !important
+  }
+  .m-r-#{$space} {
+    margin-right: #{$space + 'px'} !important
+  }
+
+
+  .p-#{$space} {
+    padding: #{$space + 'px'} !important
+  }
+  .p-v-#{$space} {
+    padding: #{$space + 'px'} 0 !important
+  }
+  .p-h-#{$space} {
+    padding: 0 #{$space + 'px'} !important
+  }
+  .p-t-#{$space} {
+    padding-top: #{$space + 'px'} !important
+  }
+  .p-b-#{$space} {
+    padding-bottom: #{$space + 'px'} !important
+  }
+  .p-l-#{$space} {
+    padding-left: #{$space + 'px'} !important
+  }
+  .p-r-#{$space} {
+    padding-right: #{$space + 'px'} !important
+  }
+}
+
+@for $space from 0 through 20 {
+  $space: $space * 5;
+  .m-#{$space} {
+    margin: #{$space + 'px'} !important
+  }
+  .m-v-#{$space} {
+    margin: #{$space + 'px'} 0 !important
+  }
+  .m-h-#{$space} {
+    margin: 0 #{$space + 'px'} !important
+  }
+  .m-t-#{$space} {
+    margin-top: #{$space + 'px'} !important
+  }
+  .m-b-#{$space} {
+    margin-bottom: #{$space + 'px'} !important
+  }
+  .m-l-#{$space} {
+    margin-left: #{$space + 'px'} !important
+  }
+  .m-r-#{$space} {
+    margin-right: #{$space + 'px'} !important
+  }
+
+  .p-#{$space} {
+    padding: #{$space + 'px'} !important
+  }
+  .p-v-#{$space} {
+    padding: #{$space + 'px'} 0 !important
+  }
+  .p-h-#{$space} {
+    padding: 0 #{$space + 'px'} !important
+  }
+  .p-t-#{$space} {
+    padding-top: #{$space + 'px'} !important
+  }
+  .p-b-#{$space} {
+    padding-bottom: #{$space + 'px'} !important
+  }
+  .p-l-#{$space} {
+    padding-left: #{$space + 'px'} !important
+  }
+  .p-r-#{$space} {
+    padding-right: #{$space + 'px'} !important
+  }
+}
+
+.m-l-auto {
+  margin-left: auto !important;
+}
+
+.m-r-auto {
+  margin-right: auto !important;
+}
+
+
+/*
+ * Fonts
+ */
+.f-100 {
+  font-weight: 100 !important;
+}
+
+.f-300 {
+  font-weight: 300 !important;
+}
+
+.f-400 {
+  font-weight: 400 !important;
+}
+
+.f-500 {
+  font-weight: 500 !important;
+}
+
+.f-700,
+.f-bold {
+  font-weight: 700 !important;
+}
+
+.f-xxsmall {
+  font-size: xx-small !important;
+}
+
+.f-xsmall {
+  font-size: x-small !important;
+}
+
+.f-smaller {
+  font-size: smaller !important;
+}
+
+.f-small {
+  font-size: small !important;
+}
+
+.f-medium {
+  font-size: medium !important;
+}
+
+.f-large {
+  font-size: large !important;
+}
+
+.f-larger {
+  font-size: larger !important;
+}
+
+.f-xlarge {
+  font-size: x-large !important;
+}
+
+.f-xxlarge {
+  font-size: xx-large !important;
+}
+
+/*
+ * Text
+ */
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+/*
+ * Widths & Heights
+ */
+@for $space from 1 through 20 {
+  $space: $space * 5;
+  .w-#{$space} {
+    width: #{$space + '%'} !important
+  }
+  .h-#{$space} {
+    height: #{$space + '%'} !important
+  }
+}
+
+.full-height {
+  height: 100vh !important;
+}
+
+.full-width {
+  width: 100vw !important;
+}
+
+/*
+ * wordwrap
+ */
+.ww-break {
+  word-wrap: break-word;
+}
+
+/*
+ * text-transform
+ */
+.lowercase {
+  text-transform: lowercase;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+/*
+* Positioning
+*/
+.p-relative {
+  position: relative !important;
+}
+
+.p-absolute {
+  position: absolute !important;
+}
+
+.p-fixed {
+  position: fixed !important;
+}
+
+.p-static {
+  position: static !important;
+}
+
+.f-left {
+  float: left !important;
+}
+
+.f-right {
+  float: right !important;
+}
+
+/*
+ * Overflow
+ */
+.o-hidden {
+  overflow: hidden !important;
+}
+
+.o-visible {
+  overflow: visible !important;
+}
+
+.o-auto {
+  overflow: auto !important;
+}
+
+/*
+ * Display
+ */
+.d-block {
+  display: block !important;
+}
+
+.d-inlineblock {
+  display: inline-block !important;
+}
+
+.d-inline {
+  display: inline !important;
+}
+
+.hide,
+.d-none {
+  display: none !important;
+}
+
+/*
+ * Border
+ */
+.b-none {
+  border: none !important;
+}
+
+@for $space from 0 through 20 {
+  $space: $space * 5;
+  .b-r-#{$space} {
+    border-radius: #{$space + 'px'} !important
+  }
+}
+
+@for $space from 1 through 25 {
+  $space: $space * 4;
+  .b-r-#{$space} {
+    border-radius: #{$space + 'px'} !important
+  }
+}
+
+/*
+ * Grid
+ */
+.grid-container {
+  display: grid;
+}
+
+.grid-aiv-center {
+  align-items: center;
+}
+
+.grid-aiv-start {
+  align-items: start;
+}
+
+.grid-aiv-end {
+  align-items: end;
+}
+
+.grid-aih-center {
+  justify-items: center;
+}
+
+.grid-aih-start {
+  justify-items: start;
+}
+
+.grid-aih-end {
+  justify-items: end;
+}
+
+.grid-asv-center {
+  align-self: center;
+}
+
+.grid-asv-start {
+  align-self: start;
+}
+
+.grid-asv-end {
+  align-self: end;
+}
+
+.grid-ash-center {
+  justify-self: center;
+}
+
+.grid-ash-start {
+  justify-self: start;
+}
+
+.grid-ash-end {
+  justify-self: end;
+}
+
+/*
+ * Others
+ */
+.label {
+  display: inline;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
