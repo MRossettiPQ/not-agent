@@ -18,10 +18,10 @@ module.exports = (io) => {
                 data: notifications
             })
 
-            // notifier.notify({
-            //     title: 'Você possui notificações',
-            //     message: 'Hello, there!'
-            // });
+            notifier.notify({
+                title: 'Você possui notificações',
+                message: 'Hello, there!'
+            });
         }
     }, 10000)
 }
