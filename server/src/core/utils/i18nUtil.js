@@ -7,7 +7,10 @@ const i18n = new I18n({
 })
 
 async function setLocale(locale) {
-    await i18n.setLocale(locale)
+    console.log('locale:', locale)
+    if(locale) {
+        await i18n.setLocale(locale)
+    }
 }
 
 module.exports = {

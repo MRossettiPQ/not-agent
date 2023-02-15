@@ -4,11 +4,11 @@ const notifier = require('node-notifier');
 module.exports = (io) => {
     io.on('connection', (socket) => {
         console.log('[Socket-IO] - Client conectado');
-        // socket.emit('deadline', {
-        //     message: 'teste'
-        // })
+        io.emit('deadline', {
+            message: 'Notificações',
+            data: {}
+        })
     });
-
 
     io.interval = setInterval(async () => {
         const notifications = await NotificationService.getNotificationInDeadline()
@@ -18,10 +18,12 @@ module.exports = (io) => {
                 data: notifications
             })
 
+            /*
             notifier.notify({
                 title: 'Você possui notificações',
                 message: 'Hello, there!'
             });
+            */
         }
     }, 10000)
 }

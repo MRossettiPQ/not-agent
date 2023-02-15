@@ -14,6 +14,15 @@
 /server/.vscode
 /server/*.iml
 /server/package-lock.json
+/server/public/*
+
+#IGNORE electron
+/electron/node_modules
+/electron/.idea
+/electron/yarn.lock
+/electron/.vscode
+/electron/*.iml
+/electron/package-lock.json
 
 #IGNORE front
 /client/node_modules

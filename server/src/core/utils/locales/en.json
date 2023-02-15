@@ -1,5 +1,7 @@
 {
 	"database.rsync_error": "database.rsync_error",
 	"database.init": "database.init",
-	"database.rsync": "database.rsync"
+	"database.rsync": "database.rsync",
+	"main.error": "main.error",
+	"main.initialized": "main.initialized"
 }
