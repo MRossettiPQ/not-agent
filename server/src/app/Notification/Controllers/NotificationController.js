@@ -1,93 +1,73 @@
-const {throwErrorIf, throwSuccess, resError} = require("../../../core/utils/RequestUtil");
-const { Notification } = require('../../../core/DataBase')
+const {throwSuccess, throwError} = require("../../../core/utils/RequestUtil");
+const {i18n} = require("../../../core/utils/i18nUtil");
+const {Notification} = require('../../../core/database').models
 
-exports.postNotification = async (req, res) => {
-    try {
-        console.log('[POST] - /api/notification')
-        const { id: idNotification } = req.body
-        let notification = await Notification.findByPk(idNotification)
+exports.postNotification = async (req) => {
+    const {id: idNotification} = req.body
+    let notification = await Notification.findByPk(idNotification)
 
-        if (notification) {
-            // Update registered patient
-            notification = await notification.update({
-                ...req.body,
-            })
-        } else {
-            notification = await Notification.create(req.body)
-        }
-
-        await throwErrorIf({
-            cond: notification === null,
-            message: 'Notification not save',
-            log: '[POST] - /api/notification - not save',
-            res,
+    if (notification) {
+        // Update registered patient
+        notification = await notification.update({
+            ...req.body,
         })
+    } else {
+        notification = await Notification.create(req.body)
+    }
 
-        await throwSuccess({
-            content: notification,
-            message: 'Notification save successful',
-            log: '\x1b[32m[POST] - /api/notification - success save\x1b[0m',
-            res,
-        })
-    } catch (e) {
-        resError({
-            message: 'Um erro ocorreu, corrija e tente novamente',
-            log: `\x1b[31m${e}\x1b[0m`,
-            res
+    if(!!notification) {
+        return  await throwError({
+            local: 'SERVER:NOTIFICATION',
+            message: i18n.__('notification.not_saved'),
+            log: i18n.__('notification.not_saved'),
         })
     }
+
+    return await throwSuccess({
+        local: 'SERVER:NOTIFICATION',
+        content: notification,
+        message: i18n.__('notification.saved'),
+        log: i18n.__('notification.saved'),
+    })
 }
 
-exports.getNotification = async (req, res) => {
-    try {
-        // console.log('[GET] - /api/notification/:id')
-        const { id: idNotification } = req.params
-        const notification = await Notification.findByPk(idNotification)
+exports.getNotification = async (req) => {
+    const {id: idNotification} = req.params
+    const notification = await Notification.findByPk(idNotification)
 
-        await throwErrorIf({
-            cond: notification === null,
-            message: 'Notification not found',
-            log: '[GET] - /api/notification/:id - not found',
-            res,
+    if (!notification) {
+        return await throwError({
+            local: 'SERVER:NOTIFICATION',
+            message: i18n.__('notification.not_founded'),
+            log: i18n.__('notification.not_founded'),
         })
-
-        await throwSuccess({
-            content: notification,
-            log: '\x1b[32m[GET] - /api/notification/:id - Notification founded\x1b[0m',
-            res,
-        })
-    } catch (e) {
-        console.error(`\x1b[31m${e}\x1b[0m`)
     }
+
+    return await throwSuccess({
+        local: 'SERVER:NOTIFICATION',
+        content: notification,
+        log: i18n.__('notification.founded'),
+    })
 }
 
-exports.getNotificationList = async (req, res) => {
-    console.log('[GET] - /api/notification/')
-    try {
-        const notification = await Notification.findAll()
+exports.getNotificationList = async (req) => {
+    const notifications = await Notification.findAll()
 
-        await throwSuccess({
-            content: { resultList: notification },
-            log: '\x1b[32m[GET] - /api/notification - Notification founded\x1b[0m',
-            res,
-        })
-    } catch (e) {
-        console.error(`\x1b[31m${e}\x1b[0m`)
-    }
+    return await throwSuccess({
+        local: 'SERVER:NOTIFICATION',
+        content: {
+            resultList: notifications
+        },
+        log: i18n.__('notification.founded'),
+    })
 }
 
 exports.getMetadata = async (req, res) => {
-    try {
-        // console.log('[GET] - /api/notification/metadata')
-        await throwSuccess({
-            content: {
-                notificationTypesOptions: Notification.getAttributes().type.values,
-                notificationStatusOptions: Notification.getAttributes().status.values,
-            },
-            log: '\x1b[32m[GET] - /api/notification/metadata\x1b[0m',
-            res,
-        })
-    } catch (e) {
-        console.error(`\x1b[31m${e}\x1b[0m`)
-    }
+    return await throwSuccess({
+        local: 'SERVER:NOTIFICATION',
+        content: {
+            notificationTypesOptions: Notification.getAttributes().type.values,
+            notificationStatusOptions: Notification.getAttributes().status.values,
+        },
+    })
 }

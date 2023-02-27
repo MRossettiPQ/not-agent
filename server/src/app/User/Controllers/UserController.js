@@ -1,29 +1,27 @@
 const {
     throwSuccess,
-    throwErrorIf,
+    throwError,
 } = require('../../../core/Utils/RequestUtil')
 const ContextUtil = require('../../../core/Utils/ContextUtil')
+const {i18n} = require("../../../core/utils/i18nUtil");
 
 exports.postSaveUser = async (req, res) => {
-    console.log('[POST] - /api/user')
-    try {
-        const userContext = await ContextUtil.getUserContext(req, res)
+    const userContext = await ContextUtil.getUserContext(req, res)
 
-        await throwErrorIf({
-            cond: userContext === null,
-            log: '[POST] - /api/user - User not found',
-            res,
+    if (!!userContext) {
+        await throwError({
+            local: 'SERVER:USER',
+            message: i18n.__('user.post_not_found'),
+            log: i18n.__('user.post_not_found'),
         })
-
-        await userContext.update(req.body)
-
-        await throwSuccess({
-            content: userContext,
-            message: 'User saved',
-            log: 'User saved',
-            res,
-        })
-    } catch (e) {
-        console.error(`\x1b[31m${e}\x1b[0m`)
     }
+
+    await userContext.update(req.body)
+
+    return await throwSuccess({
+        local: 'SERVER:USER',
+        message: i18n.__('user.post_saved'),
+        log: i18n.__('user.post_saved'),
+        content: userContext,
+    })
 }

@@ -1,11 +1,11 @@
-import { Component, Vue } from "vue-property-decorator";
+import {Component, Vue} from "vue-property-decorator";
 import Notification from "./Notification.vue";
-import { PaginationUtils } from "src/commons/utils/PaginationUtils";
+import {PaginationUtils} from "src/commons/utils/PaginationUtils";
 import DialogUtils from "src/commons/utils/DialogUtils";
 
 @Component({
   name: "notifications",
-  components: { Notification },
+  components: { Notification  },
 })
 class Notifications extends Vue {
   loading = false;

@@ -1,14 +1,23 @@
 const Header = require("./Header")
 const PublicRoutes = require("./PublicRoutes")
 const PrivateRoutes = require("./PrivateRoutes")
+const environment = require("../environment");
+const {SpaResolver} = require("../src/core/utils/RequestUtil");
 
 module.exports = (app) => {
-    // TODO ping
-    app.get('/ping', (req, res) => {
-        res.json({
-            message: '[SERVER] - Ping route'
+    if(environment.development) {
+        // TODO ping
+        app.get('/ping', (req, res) => {
+            res.json({
+                message: '[SERVER] - Ping route'
+            })
         })
-    })
+    }
+
+    // TODO redirect to page in spa or api
+    if(!environment.just_api) {
+        app.use(SpaResolver);
+    }
 
     // TODO set header
     app.use(Header)

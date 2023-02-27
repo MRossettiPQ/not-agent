@@ -1,70 +1,73 @@
-const jwt = require('jsonwebtoken')
-const environment = require('../../../environment')
-const { User } = require('../DataBase')
+const {User} = require('../database').models
 const {
-    throwErrorIf,
-    throwForbiddenIf,
-    throwUnauthorizedIf,
+    throwError, throwForbidden
 } = require('./RequestUtil')
+const {logColor} = require("./LogUtil");
+const {ResolveToken} = require("../middleware/AuthorizeJwt");
 
-exports.getUserContextId = async (req, res) => {
-    // eslint-disable-next-line no-async-promise-executor
-    return new Promise(async (resolve, reject) => {
-        try {
-            let token = req.headers['x-access-token']
-            await throwForbiddenIf({
-                cond: !token,
-                message: `No token provided`,
-                log: `[CONTEXT] - No token provided`,
-                res,
-            })
+exports.getUserContextId = async (req) => {
+    logColor('SERVER:CONTEXT', `getUserContextId`)
+    // Get header token
+    const token = req.headers['x-access-token']
+    if (!token) {
+        return await throwForbidden({
+            local: 'SERVER:USERCONTEXT',
+            message: `No token provided`,
+            log: `No token provided`,
+        })
+    }
 
-            return await jwt.verify(
-                token,
-                environment.secret,
-                async (err, decoded) => {
-                    try {
-                        await throwUnauthorizedIf({
-                            cond: err,
-                            message: 'No token provided!',
-                            log: `[CONTEXT] - No token provided`,
-                            res,
-                        })
-                        req.contextUser = {
-                            idUSerContext: decoded.id,
-                        }
-                        return resolve(decoded.id)
-                    } catch (e) {
-                        return e
-                    }
-                },
-                null
-            )
-        } catch (e) {
-            return reject(e)
-        }
-    })
+    req.context = {
+        ...req.context,
+        token
+    }
+
+    // Check token
+    const resultToken = await ResolveToken(token)
+    if (!resultToken) {
+        return await throwForbidden({
+            local: 'SERVER:CONTEXT',
+            message: `Invalid token`,
+            log: `Invalid token`,
+        })
+    }
+    return resultToken.id
 }
 
-exports.getUserContext = async (req, res) => {
-    // eslint-disable-next-line no-async-promise-executor
-    return new Promise(async (resolve, reject) => {
-        try {
-            const idUserContext = await this.getUserContextId(req, res)
-            const contextUser = await User.findByPk(idUserContext)
+exports.getUserContext = async (req) => {
+    logColor('SERVER:CONTEXT', `getUserContext`)
+    if (req?.context?.user) {
+        return req?.context?.user
+    }
 
-            await throwErrorIf({
-                cond: contextUser === null,
-                message: `Need to be logged in`,
-                log: `[CONTEXT] - Need to be logged in`,
-                res,
-            })
+    const idUserContext = await this.getUserContextId(req)
 
-            req.contextUser = contextUser
+    const user = await User.findByPk(idUserContext)
+    if (!user) {
+        return await throwError({
+            local: 'SERVER:CONTEXT',
+            message: `Need to be logged in`,
+            log: `Need to be logged in`,
+        })
+    }
 
-            return resolve(contextUser)
-        } catch (e) {
-            return reject(e)
-        }
+    req.context = {
+        ...req.context,
+        user
+    }
+
+    return user
+}
+
+exports.getContext = async (req) => {
+    logColor('SERVER:CONTEXT', `[${req.method}] - ${req.originalUrl} - getContext`)
+    if (req?.context) {
+        return req?.context
+    }
+
+    return await throwError({
+        local: 'SERVER:CONTEXT',
+        message: `No context`,
+        log: `No context`,
     })
 }

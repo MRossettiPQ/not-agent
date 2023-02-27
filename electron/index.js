@@ -11,7 +11,7 @@ class App {
     server = new NotAgent()
 
     constructor() {
-        this.init().then(() => console.log('[APP] Initialized'))
+        this.init().then().catch()
     }
 
     async createTrayMenu() {
@@ -85,6 +85,8 @@ class App {
 
     async init() {
         try {
+            console.log(`\x1b[35m[ELECTRON] - Init\x1b[0m`)
+
             await app.whenReady()
 
             await this.createTrayMenu()
@@ -92,6 +94,7 @@ class App {
             await this.createServer()
 
             await this.createSocket()
+            console.log(`\x1b[35m[ELECTRON] - Initialized\x1b[0m`)
         } catch (e) {
             console.log(e)
         } finally {

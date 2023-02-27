@@ -1,4 +1,4 @@
-const { Notification } = require('../../../core/DataBase')
+const { Notification } = require('../../../core/database')
 
 
 let notificationInDeadlineLoading = false

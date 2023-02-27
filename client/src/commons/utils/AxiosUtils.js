@@ -1,14 +1,14 @@
 import AuthenticationUtils from "./AuthenticationUtils";
 import axios from "axios";
-import { notifyError, notifySuccess } from "src/commons/utils/NotifyUtils";
+import {notifyError, notifySuccess} from "src/commons/utils/NotifyUtils";
 
 class Request {
   static Axios = class {
-    constructor() {}
+    constructor() {
+    }
 
     setAxios(option) {
-      console.log(option, typeof option);
-      this.Axios = axios.create({ ...option });
+      this.Axios = axios.create({...option});
       this.Axios.interceptors.response.use(
         this.handlerResponse,
         this.handlerReject
@@ -30,21 +30,19 @@ class Request {
     }
 
     async handlerResponse(response) {
-      if (response?.config?.method?.toUpperCase() !== "GET") {
-        if (
-          response?.data &&
-          (response?.data?.message || response?.data?.msg)
-        ) {
-          notifySuccess(response?.data?.message || response?.data?.msg);
-        }
-      }
-      if (response?.config?.method?.toUpperCase() !== "POST") {
-        if (
-          response?.data &&
-          (response?.data?.message || response?.data?.msg)
-        ) {
-          notifySuccess(response?.data?.message || response?.data?.msg);
-        }
+      switch (response?.config?.method?.toUpperCase()) {
+        case "GET":
+          if (response?.data && (response?.data?.message || response?.data?.msg)) {
+            notifySuccess(response?.data?.message || response?.data?.msg);
+          }
+          break
+        case "POST":
+          if (response?.data && (response?.data?.message || response?.data?.msg)) {
+            notifySuccess(response?.data?.message || response?.data?.msg);
+          }
+          break
+        default:
+          break
       }
       return response;
     }

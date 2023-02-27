@@ -7,17 +7,16 @@ import {notifySuccess} from "src/commons/utils/NotifyUtils";
 })
 class PrivateApp extends Vue {
 
-  socket = {}
+  socket = null
 
   mounted() {
     this.socket = io(process.env.SOCKET_URL.replace(/['"!@#$%^&*]/g, ""))
-
     this.socket.on('disconnect', () => {
-      console.log('user disconnected');
+      console.log('[SOCKETIO] User disconnected');
     });
 
     this.socket.on('deadline', (obj) => {
-      console.log('deadline: ', obj);
+      console.log('[SOCKETIO] Event - Deadline: ', obj);
       notifySuccess(obj.message)
     });
   }
