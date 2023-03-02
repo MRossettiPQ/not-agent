@@ -1,10 +1,6 @@
-const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const {User} = require('../../../core/database').models
-const environment = require('../../../../environment')
-const {
-    throwSuccess,
-} = require('../../../core/Utils/RequestUtil')
+const { User } = require('../../../core/database').models
+const {throwSuccess} = require('../../../core/Utils/RequestUtil')
 const ContextUtil = require('../../../core/Utils/ContextUtil')
 const {i18n} = require('../../../core/Utils/i18nUtil')
 const {throwError, throwNotFound, throwUnauthorized} = require("../../../core/utils/RequestUtil");

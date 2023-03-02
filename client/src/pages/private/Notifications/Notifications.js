@@ -5,7 +5,7 @@ import DialogUtils from "src/commons/utils/DialogUtils";
 
 @Component({
   name: "notifications",
-  components: { Notification  },
+  components: {Notification},
 })
 class Notifications extends Vue {
   loading = false;
@@ -32,7 +32,7 @@ class Notifications extends Vue {
   ];
 
   async search(term) {
-    await this.pagination.search({ term });
+    await this.pagination.search({term});
   }
 
   async mounted() {

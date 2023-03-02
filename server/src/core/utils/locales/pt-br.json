@@ -4,7 +4,7 @@
 	"main.load_socket": "Carregando handler socket",
 	"main.initialized": "Server está rodando na porta:",
 	"main.error": "Ocorreu um erro ao inicializar o servidor",
-	"database.init": "Ocorreu um erro ao inicializar o servidor",
+	"database.init": "Database init",
 	"database.error": "Erro ao criar esquema de banco de dados",
 	"database.rsync": "Drop ou Rsync Database",
 	"database.rsync_error": "Error no Drop ou Rsync Database",
