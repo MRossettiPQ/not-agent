@@ -1,10 +1,14 @@
 const bcrypt = require('bcryptjs')
 const { User } = require('../../../core/database').models
-const {throwSuccess} = require('../../../core/Utils/RequestUtil')
+const { throwSuccess } = require('../../../core/Utils/RequestUtil')
 const ContextUtil = require('../../../core/Utils/ContextUtil')
-const {i18n} = require('../../../core/Utils/i18nUtil')
-const {throwError, throwNotFound, throwUnauthorized} = require("../../../core/utils/RequestUtil");
-const {CreateToken} = require("../../../core/middleware/AuthorizeJwt");
+const { i18n } = require('../../../core/Utils/i18nUtil')
+const {
+    throwError,
+    throwNotFound,
+    throwUnauthorized,
+} = require('../../../core/utils/RequestUtil')
+const { CreateToken } = require('../../../core/middleware/AuthorizeJwt')
 
 exports.register = async (req) => {
     const newUser = await User.create({
@@ -20,10 +24,8 @@ exports.register = async (req) => {
             email: newUser.email,
         },
         message: i18n.__('authentication.created'),
-        log: i18n.__(
-            'authentication.created'
-        ),
-        local: 'SERVER:AUTHENTICATION'
+        log: i18n.__('authentication.created'),
+        local: 'SERVER:AUTHENTICATION',
     })
 }
 
@@ -34,7 +36,7 @@ exports.login = async (req) => {
         },
     })
 
-    if (!!userFound) {
+    if (!userFound) {
         return await throwNotFound({
             local: 'SERVER:AUTHENTICATION',
             message: i18n.__('user.auth_not_found'),
@@ -56,10 +58,10 @@ exports.login = async (req) => {
     }
 
     const token = await CreateToken({
-        id: userFound.id
+        id: userFound.id,
     })
 
-    if (!!token) {
+    if (!token) {
         return await throwError({
             local: 'SERVER:AUTHENTICATION',
             message: i18n.__('user.auth_unable_authenticate'),
@@ -85,7 +87,7 @@ exports.login = async (req) => {
 exports.getUserContext = async (req) => {
     const userContext = await ContextUtil.getUserContext(req)
 
-    if (!!userContext) {
+    if (userContext) {
         return await throwError({
             local: 'SERVER:AUTHENTICATION',
             message: i18n.__('user.auth_not_found'),

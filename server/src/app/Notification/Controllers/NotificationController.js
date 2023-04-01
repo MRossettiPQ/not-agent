@@ -1,7 +1,6 @@
 const {throwSuccess, throwError} = require("../../../core/utils/RequestUtil");
 const {i18n} = require("../../../core/utils/i18nUtil");
 const {Notification} = require('../../../core/database').models
-
 exports.postNotification = async (req) => {
     const {id: idNotification} = req.body
     let notification = await Notification.findByPk(idNotification)
